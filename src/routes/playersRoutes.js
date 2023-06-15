@@ -5,5 +5,6 @@ const router = express.Router();
 
 router
     .get('/players', PlayerController.getPlayers)
+    .post('/players', PlayerController.postPlayer)
 
 export default router;

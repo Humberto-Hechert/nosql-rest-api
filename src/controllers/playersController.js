@@ -12,6 +12,20 @@ class PlayerController {
         }
     }
 
+    static postPlayer = async (req, res) => {
+        const player = new players(req.body)
+
+        try {
+            player.save()
+                .then(() => {
+                    res.status(200).send(player.toJSON())
+                })
+        } catch (err) {
+            console.error(err)
+            res.status(500).send({message : `${err.message} Falha ao cadastrar jogador`})
+        }
+    }
+
 }
 
 export default PlayerController;
