@@ -29,6 +29,23 @@ class PlayerController {
             })
     }
 
+    static updatePlayer = async (req, res) => {
+        const { id } = req.params
+
+        players.findByIdAndUpdate(id, {$set: req.body})
+            .then(updatedPlayer => {
+                if (!updatedPlayer) {
+                    res.status(404).send({message: "Jogador não encontrado em nossa base"})
+                } else {
+                    res.status(200).send({message: "Jogador atualizado com sucesso"})
+                }
+            })
+            .catch (err => {
+                console.error(err)
+                res.status(500).send({message: `${err.message} - Falha ao atualizar jogador`})
+            })
+    }
+
     static postPlayer = async (req, res) => {
         const player = new players(req.body)
 
