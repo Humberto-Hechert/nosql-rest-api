@@ -46,6 +46,23 @@ class PlayerController {
             })
     }
 
+    static deletePlayer = async (req, res) => {
+        const { id } = req.params
+
+        players.findByIdAndDelete(id)
+            .then(deletedPlayer => {
+                if (!deletedPlayer) {
+                    res.status(404).send({message: "Jogador não encontrado em nossa base"})
+                } else {
+                    res.status(200).send({message: "Jogador removido"})
+                }
+            })
+            .catch (err => {
+                console.error(err)
+                res.status(500).send({message: `${err.message} - Erro ao remover jogador`})
+            })
+    }
+
     static postPlayer = async (req, res) => {
         const player = new players(req.body)
 
