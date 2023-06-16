@@ -1,5 +1,6 @@
 import express from "express";
 import players from "./playersRoutes.js"
+import teams from "./teamsRoutes.js"
 
 const routes = (app) => {
     app.route('/').get((req, res) => {
@@ -8,7 +9,8 @@ const routes = (app) => {
 
     app.use(
         express.json(),
-        players
+        players,
+        teams
         )
 }
 
