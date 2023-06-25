@@ -52,7 +52,7 @@ class TeamController {
         try {
             team.save()
                 .then(() => {
-                    res.status(200).send(team.toJSON())
+                    res.status(201).send(team.toJSON())
                 })
         } catch (err) {
             console.error(err)

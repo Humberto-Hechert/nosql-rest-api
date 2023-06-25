@@ -72,7 +72,7 @@ class PlayerController {
             } else {
                 player.save()
                     .then(() => {
-                        res.status(200).send(player.toJSON())
+                        res.status(201).send(player.toJSON())
                     })
             }
 
